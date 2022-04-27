@@ -1,6 +1,4 @@
 
-// Agrega nuevas canciones
-
 // Total de tiempo de reproducción
 
 // Metodos de busqueda y filtrado: 
@@ -14,14 +12,15 @@
     // El segundo es el valor inicial del acumulador.
     // numeros.reduce(XX, XX) -> numeros.reduce(XX, 0) -> 👇🏼
 
-// Agregar un constructor de canciones que lo agregue al array
 
 // funcion de conversión de decimales a tiempo
         // 60 = 1
 
 
-// Tiempo = segundos
 
+const finalPlaylist = [];
+
+            // Tiempo = segundos
 const songs = [
     {   id:1 , name: "Romantic Movies", autor: "Kay Vs the Moon", genero:"Rock", tiempo: 228   },
     {   id:2 , name: "En cuatro", autor: "Amigos Invisibles", genero:"Rock", tiempo: 240   },
@@ -45,7 +44,29 @@ const songs = [
     {   id:20 , name: "The Bidding", autor: "Tally Hall", genero:"Rock", tiempo: 192   },
 ]
 
-const finalPlaylist = [];
+class newSong {
+    constructor(id, name, autor, genero, tiempo) {
+        this.id = songFilter.length + 1
+        this.name = userSongName;
+        this.autor = userAutor;
+        this.genre = userGenre;
+        this.tiempo = userTiempo;
+    }
+}
+
+function alphabetical () {
+    songFilter.sort((a, b) => {
+        if (a.name > b.name) {
+            return 1;
+        }
+        if (a.name < b.name) {
+            return -1;
+        }
+        // a es igual a b
+        return 0;
+    })
+}
+
 
 let printedMenu;
 const songMenu = [];
@@ -97,17 +118,17 @@ console.log(songFilter);
 printingMenu(songFilter);
 alert("¡Excelente! por ahora contamos con esta playlist:\n\n" + printedMenu);
 
-songFilter.sort((a, b) => {
-    if (a.name > b.name) {
-        return 1;
-    }
-    if (a.name < b.name) {
-        return -1;
-    }
-    // a es igual a b
-    return 0;
-})
+alphabetical();
 
 printingMenu(songFilter);
 alert("Ahora... se que esto parecera tonto, pero a los castores realmente les molesta cuando las canciones no van en orden alfabetico. Así que las acomodé aquí abajo en ese orden.\n\n" + printedMenu)
+
+let userAutor = prompt("¿Que dices? ¿Vos tenes una agrupación musical? Mira, no digas que yo te lo dije, pero... podemos darte algo de promoción aquí ¿ves?, Siempre y cuando sea " + userGenre + ", claro esta.\n\n" + "¿Como se llama vuestra agrupación?")
+
+let userSongName = prompt("¿Como se llama vuestra canción mas pegajosa?")
+
+let = userTiempo = prompt("¿Cuanto dura " + userSongName + "?");
+
+songFilter.push(new newSong(0, userSongName, userAutor, userGenre, userTiempo));
+
 
