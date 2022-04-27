@@ -1,27 +1,11 @@
 
-// Variables, funciones (funciones flecha), funciones en conjunción con arrays, objetos, objetos dentro de arrays, metodos de busqueda y filtrado en arrays.
-
-
-// Crea una playlist
-
-// Lista de canciones, array de objetos titulos, autores, album, tiempo
-
 // Agrega nuevas canciones
 
 // Total de tiempo de reproducción
 
 // Metodos de busqueda y filtrado: 
 
-/* 
-function porCadaUno (arr, fun) {
-    for (const el of arr) {
-        fn(el);
-    }
-}
-*/
 
-// ### find() - retorna el primer elemento de un array que cumpla con la condición
-// Encuentra una canción por generos
 
 // Para el total de tiempo
 // reduce () - Nos permite obtener un unico valor tras iterar sorbre el array. Funciona como un metodo que resume el array a un único valor de retorno. 
@@ -63,8 +47,8 @@ const songs = [
 
 const finalPlaylist = [];
 
-const songMenu = [];
 let printedMenu;
+const songMenu = [];
 function printingMenu (valor) {
     songMenu.splice(0, songMenu.length);
     for (const item of valor ) {
@@ -100,7 +84,7 @@ let userTimeAdd = prompt("Los castores detestan cuando una canción termina y em
 
 songFilter = songFilter.map( (el) => {
     return {
-        id: (el.id*0) + i,
+        id: el.id,
         name: el.name,
         autor: el.autor,
         genero: el.genero,
@@ -112,3 +96,18 @@ console.log(songFilter);
 
 printingMenu(songFilter);
 alert("¡Excelente! por ahora contamos con esta playlist:\n\n" + printedMenu);
+
+songFilter.sort((a, b) => {
+    if (a.name > b.name) {
+        return 1;
+    }
+    if (a.name < b.name) {
+        return -1;
+    }
+    // a es igual a b
+    return 0;
+})
+
+printingMenu(songFilter);
+alert("Ahora... se que esto parecera tonto, pero a los castores realmente les molesta cuando las canciones no van en orden alfabetico. Así que las acomodé aquí abajo en ese orden.\n\n" + printedMenu)
+
