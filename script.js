@@ -23,13 +23,6 @@ function porCadaUno (arr, fun) {
 // ### find() - retorna el primer elemento de un array que cumpla con la condición
 // Encuentra una canción por generos
 
-// Filtro por genero
-// ### filter() -  recibe (al igual que find() ), una funcion comparadora por parametro, y retorna un nuevo array con todos los elementos que cumplan esa condicion. Si no hay coincidencias retornará un array vacío.
-
-// Para la nueva playlist
-// ### map() - El método crea un nuevo array con todos los elementos del original transformados según las operaciones de la función enviada por paramento.
-// Tiene la misma cantidad de elementos pero almacenados son el return de la función.
-
 // Para el total de tiempo
 // reduce () - Nos permite obtener un unico valor tras iterar sorbre el array. Funciona como un metodo que resume el array a un único valor de retorno. 
 // A diferencia de los metodos anteriores, método "reduce" recibe dos parametros:
@@ -68,24 +61,13 @@ const songs = [
     {   id:20 , name: "The Bidding", autor: "Tally Hall", genero:"Rock", tiempo: 192   },
 ]
 
-/* {   id:21 , name: "Crystal Dolphin", autor: "Engelwood", genero:"Pop", tiempo: 216    },
-{   id:22 , name: "Enemy", autor: "Imagine Dragons", genero:"Pop", tiempo: 288    },
-{   id:23 , name: "Everyday Normal Guy 2", autor: "Jon Lajoie", genero:"Rap", tiempo: 220    },
-{   id:24 , name: "Shekebon!", autor: "Vickeblanka", genero:"KPOP", tiempo: 186    },
-{   id:25 , name: "Gangsta Paradise", autor: "Coolio", genero:"Rap", tiempo: 252    },
-{   id:26 , name: "edemame", autor: "bbno$", genero:"Rap", tiempo: 177    },
-{   id:27 , name: "Oh My God", autor: "Guns N' Roses", genero:"Rock", tiempo: 324   },
-{   id:28 , name: "Flux", autor: "Poppy", genero:"Rock", tiempo: 204    },
-{   id:29 , name: "Bezos 1", autor: "Bo Burnham", genero:"Pop", tiempo: 107    },
-{   id:30 , name: "Kill This Love", autor: "BLACKPINK", genero:"salsa", tiempo: 246    }, */
-
 const finalPlaylist = [];
 
 const songMenu = [];
 let printedMenu;
-function printingMenu () {
+function printingMenu (valor) {
     songMenu.splice(0, songMenu.length);
-    for (const item of songs ) {
+    for (const item of valor ) {
         let selector = 0
         // newArray recolecta los valores de los objetos en el array
         const newArray = [item.id, item.name, item.autor, item.genero, item.tiempo ];
@@ -98,7 +80,7 @@ function printingMenu () {
     printedMenu = songMenu.join("\n");
     console.log(printedMenu)
 }
-printingMenu();
+printingMenu(songs);
 // Falta cambio de tiempo a formato de 00:00
 
 
@@ -110,10 +92,23 @@ alert("Por favor ayudanos a crear una playlist ideal para nuestros castorescucha
 let userGenre = prompt("A los castores no les gusta que mezclemos generos, podrías seleccionar un genero para ellos?\n\n" + "Ej. Rock, Pop, KPOP, Rap");
 // Falta validación de input
 
-const songFilter = songs.filter(   (el) => el.genero.includes(userGenre));
+let songFilter = songs.filter(   (el) => el.genero.includes(userGenre));
 console.log(songFilter);
 
 let userTimeAdd = prompt("Los castores detestan cuando una canción termina y empieza la siguiente inmediatamente.\n\n ¿Cuantos segundos deberiamos esperar entre canción y canción?");
 
-const timeAddition = songFilter.map(  (el) => el.tiempo + parseInt(userTimeAdd));
-console.log(timeAddition);
+
+songFilter = songFilter.map( (el) => {
+    return {
+        id: (el.id*0) + i,
+        name: el.name,
+        autor: el.autor,
+        genero: el.genero,
+        tiempo: el.tiempo + parseInt(userTimeAdd),
+    }
+} );
+console.log(songFilter);
+// Si no agregas los demas valores los borra a la shingada
+
+printingMenu(songFilter);
+alert("¡Excelente! por ahora contamos con esta playlist:\n\n" + printedMenu);
