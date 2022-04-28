@@ -59,6 +59,9 @@ function alphabetical (array) {
 }
 
 
+
+
+
 // Toda esta sección, toma un array y sus distintos valores (los cuales no he logrado generalizar) y los imprime en un string que puedes llamar para colocarlo facilmente en un console.log. Esto es solo para presentarlo de una forma mas estetica al usuario.
 let printedMenu;
 const songMenu = [];
@@ -81,7 +84,11 @@ printingMenu(songs);
 
 
 
+
+// #######################################################################
 // FLUJO DEL USUARIO #####################################################
+// #######################################################################
+
 // Se le presenta la playlist general al usuario.
 alert("Bienvenido a radio CH-Jack, la unica radio enfocada 100% en musica para castores.");
 alert("Por favor ayudanos a crear una playlist ideal para nuestros castorescuchas. \n" + "Esta es nuestra playlist actual: \n\n" + printedMenu)
