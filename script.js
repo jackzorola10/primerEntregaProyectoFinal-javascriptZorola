@@ -28,6 +28,20 @@ const songs = [
     {   id:20 , name: "The Bidding", autor: "Tally Hall", genero:"Rock", tiempo: 192   },
 ]
 
+
+function convertHMS(value) {
+    const sec = parseInt(value, 10); // convert value to number if it's string
+
+    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
+    let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
+    
+    // add 0 if value < 10; Example: 2 => 02
+    if (minutes < 10) {minutes = "0"+minutes;}
+    if (seconds < 10) {seconds = "0"+seconds;}
+    return hours+':'+minutes+':'+seconds; // Return is HH : MM : SS
+}
+
+
 // Constructor de canciones, le permitiremos al usuario ingresar una nueva canción a la playlist la cual acomodaremos junto con las demas. 
 class newSong {
     constructor(id, name, autor, genero, tiempo) {
@@ -95,15 +109,42 @@ alert("Por favor ayudanos a crear una playlist ideal para nuestros castorescucha
 
 // Se le pide que escoga un genero para filtrar la playlist: 4 opciones posibles Rock, Pop, KPOP, Rap.
 let userGenre = prompt("A los castores no les gusta que mezclemos generos, podrías seleccionar un genero para ellos?\n\n" + "Ej. Rock, Pop, KPOP, Rap");
-// Falta validación de input #TOFIX#
+console.log("userGenre is" + userGenre);
 
+        // VALIDACIÓN DE INPUT - Asegurarnos que solo ingrese 1 de los 4 valores permitidos. (Aún no he encontrado una forma de generalizar esto)
+            let userGenreLowerCase = userGenre.toLowerCase();
+            console.log("userGenreLowerCase is " + userGenreLowerCase);
+
+            for (let i = 0; i < 1; i++) {
+                userGenreLowerCase = userGenre.toLowerCase();
+                switch(userGenreLowerCase){
+                    case "rock":
+                        break;
+                    case "pop":
+                        break;
+                    case "kpop":
+                        break;
+                    case "rap":
+                        break;
+                    default:
+                        i--;
+                    userGenre = prompt("Por favor ingrese alguno de los 4 generos que tenemos:\n- 'Rock'\n- 'Pop'\n- 'KPOP'\n- 'Rap'");
+                    console.log("userGenre iterated is" + userGenre);
+                        break;
+                    } 
+            }
+
+// Filtramos el array por la selección del usuario y creamos uno nuevo a partir de este. 
 let songFilter = songs.filter(   (el) => el.genero.includes(userGenre));
 console.log(songFilter);
-// Falta rescribir los valores del id #TOFIX#
+
 
 // Solicite al usuario que me dijera un tiempo extra para añadir entre canción y canción, que despues agregaré al tiempo de duración de cada canción.
 let userTimeAdd = prompt("Los castores detestan cuando una canción termina y empieza la siguiente inmediatamente.\n\n ¿Cuantos segundos deberiamos esperar entre canción y canción?");
+console.log("userTimeAdd is " + userTimeAdd)
 // Falta validación para number
+
+
 
 // Use el mapping para reescribir los valores de "tiempo" y sumarle el userTimeAdd que preguntamos arriba.
 songFilter = songFilter.map( (el) => {
@@ -153,4 +194,3 @@ alert("¡Venga, la he agregado aquí, esos castores van a amarlo! \n\n" + printe
 // PENDIENTE
     // funcion de conversión de decimales a tiempo
     // validaciones
-
