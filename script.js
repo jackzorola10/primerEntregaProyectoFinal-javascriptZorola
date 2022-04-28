@@ -29,19 +29,6 @@ const songs = [
 ]
 
 
-function convertHMS(value) {
-    const sec = parseInt(value, 10); // convert value to number if it's string
-
-    let minutes = Math.floor((sec - (hours * 3600)) / 60); // get minutes
-    let seconds = sec - (hours * 3600) - (minutes * 60); //  get seconds
-    
-    // add 0 if value < 10; Example: 2 => 02
-    if (minutes < 10) {minutes = "0"+minutes;}
-    if (seconds < 10) {seconds = "0"+seconds;}
-    return hours+':'+minutes+':'+seconds; // Return is HH : MM : SS
-}
-
-
 // Constructor de canciones, le permitiremos al usuario ingresar una nueva canción a la playlist la cual acomodaremos junto con las demas. 
 class newSong {
     constructor(id, name, autor, genero, tiempo) {
@@ -119,12 +106,16 @@ console.log("userGenre is" + userGenre);
                 userGenreLowerCase = userGenre.toLowerCase();
                 switch(userGenreLowerCase){
                     case "rock":
+                        userGenre = "Rock";
                         break;
                     case "pop":
+                        userGenre = "Pop";
                         break;
                     case "kpop":
+                        userGenre = "KPOP";
                         break;
                     case "rap":
+                        userGenre = "Rap"
                         break;
                     default:
                         i--;
@@ -143,7 +134,6 @@ console.log(songFilter);
 let userTimeAdd = prompt("Los castores detestan cuando una canción termina y empieza la siguiente inmediatamente.\n\n ¿Cuantos segundos deberiamos esperar entre canción y canción?");
 console.log("userTimeAdd is " + userTimeAdd)
 // Falta validación para number
-
 
 
 // Use el mapping para reescribir los valores de "tiempo" y sumarle el userTimeAdd que preguntamos arriba.
