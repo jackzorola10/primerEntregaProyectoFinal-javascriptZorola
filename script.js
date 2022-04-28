@@ -1,26 +1,9 @@
-
-// Total de tiempo de reproducción
-
-// Metodos de busqueda y filtrado: 
-
-
-
-// Para el total de tiempo
-// reduce () - Nos permite obtener un unico valor tras iterar sorbre el array. Funciona como un metodo que resume el array a un único valor de retorno. 
-// A diferencia de los metodos anteriores, método "reduce" recibe dos parametros:
-    // El primero es la funcion que ordena qué queremos resumir del array. Recube un parametro que funciona como acumulador y el elemento del array que iteramos. 
-    // El segundo es el valor inicial del acumulador.
-    // numeros.reduce(XX, XX) -> numeros.reduce(XX, 0) -> 👇🏼
-
-
+// PENDIENTE
 // funcion de conversión de decimales a tiempo
-        // 60 = 1
+// validaciones
+// documentación
 
-
-
-const finalPlaylist = [];
-
-            // Tiempo = segundos
+            // Tiempo = segundos         // 60 = 1
 const songs = [
     {   id:1 , name: "Romantic Movies", autor: "Kay Vs the Moon", genero:"Rock", tiempo: 228   },
     {   id:2 , name: "En cuatro", autor: "Amigos Invisibles", genero:"Rock", tiempo: 240   },
@@ -54,8 +37,9 @@ class newSong {
     }
 }
 
-function alphabetical () {
-    songFilter.sort((a, b) => {
+// Hay que cambiar algo aquí porque si de pura chance escriben la canción con minuscula, ya bailamos las calmadas. No quiero ni pensar si es numero o simbolo.
+function alphabetical (array) {
+    array.sort((a, b) => {
         if (a.name > b.name) {
             return 1;
         }
@@ -89,7 +73,7 @@ printingMenu(songs);
 // Falta cambio de tiempo a formato de 00:00
 
 
-// FLUJO DEL USUARIO
+// FLUJO DEL USUARIO #####################################################
 
 alert("Bienvenido a radio CH-Jack, la unica radio enfocada 100% en musica para castores.");
 alert("Por favor ayudanos a crear una playlist ideal para nuestros castorescuchas. \n" + "Esta es nuestra playlist actual: \n\n" + printedMenu)
@@ -118,17 +102,27 @@ console.log(songFilter);
 printingMenu(songFilter);
 alert("¡Excelente! por ahora contamos con esta playlist:\n\n" + printedMenu);
 
-alphabetical();
+alphabetical(songFilter);
 
 printingMenu(songFilter);
 alert("Ahora... se que esto parecera tonto, pero a los castores realmente les molesta cuando las canciones no van en orden alfabetico. Así que las acomodé aquí abajo en ese orden.\n\n" + printedMenu)
 
-let userAutor = prompt("¿Que dices? ¿Vos tenes una agrupación musical? Mira, no digas que yo te lo dije, pero... podemos darte algo de promoción aquí ¿ves?, Siempre y cuando sea " + userGenre + ", claro esta.\n\n" + "¿Como se llama vuestra agrupación?")
+let userAutor = prompt("¿Que dices? ¿Vos tenes una agrupación musical?\nMira, no digas que yo te lo dije, pero... podemos darte algo de promoción aquí ¿ves?, siempre y cuando sea " + userGenre + ", claro esta.\n\n" + "¿Como se llama vuestra agrupación?")
 
-let userSongName = prompt("¿Como se llama vuestra canción mas pegajosa?")
+let userSongName = prompt("¿Como se llama la canción mas pegajosa de " + userAutor + "?")
 
-let = userTiempo = prompt("¿Cuanto dura " + userSongName + "?");
+let = userTiempo = prompt("¿Cuanto dura " + userSongName + " en segundos?");
 
 songFilter.push(new newSong(0, userSongName, userAutor, userGenre, userTiempo));
 
+alphabetical(songFilter);
+printingMenu(songFilter);
+
+let runtime = 0;
+for (let i = 0; i < songFilter.length; i++) {
+        runtime += parseInt(songFilter[i].tiempo);
+}
+console.log(runtime);
+
+alert("¡Venga, la he agregado aquí, esos castores van a amarlo! \n\n" + printedMenu + "\n\n El total runtime es de: " + runtime);
 
